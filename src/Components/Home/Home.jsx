@@ -6,6 +6,7 @@ import Skills from '../Skill/Skill.jsx'
 import BlogList from '../../Pages/blogs/blogList.jsx'
 import Footer from '../Footer/Footer.jsx'
 import Contact from '../Contacts/Contact.jsx'
+import Projects from '../Projects/Projects.jsx'
 
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
       <About />
       <Education />
       <Skills />
+      <Projects />
       <BlogList />
       <Contact></Contact>
       <Footer></Footer>
