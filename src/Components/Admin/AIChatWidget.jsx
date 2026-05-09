@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
- import { adminApi } from "../api/adminApi"; // adjust path
+import { adminApi } from "../../utils/api";
 
 export default function AIChatWidget() {
   const [open, setOpen] = useState(false);
