@@ -30,6 +30,12 @@ export const publicApi = {
 
 // ---- Admin API ----
 export const adminApi = {
+  chat: (message, history) =>
+  fetch(`${BASE_URL}/auth/chat`, {
+    method: "POST",
+    headers: authHeaders(),
+    body: JSON.stringify({ message, history }),
+  }).then(handleResponse),
   login: (username, password) =>
     fetch(`${BASE_URL}/auth/login`, {
       method: "POST",

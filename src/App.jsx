@@ -7,6 +7,7 @@ import LoginMain from './Components/Home/LoginMain.jsx';
 import AdminLayout from './Components/Admin/AdminLayout.jsx';
 import Dashboard from './Components/Admin/Dashboard.jsx';
 import AddBlog from './Components/Admin/AddBlog.jsx';
+import AIChatWidget from "./Components/Admin/AIChatWidget.jsx";
 import ProtectedRoute from './Components/Auth/ProtectedRoute.jsx';
 import Xxx from './Components/NotPath/Xxx.jsx';
 import Intro from "./Components/NotPath/Intro.jsx";
@@ -33,12 +34,13 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <AdminLayout />
+
           </ProtectedRoute>
         ),
         children: [
           { index: true, element: <Dashboard /> },
           { path: "dashboard", element: <Dashboard /> },
-          { path: "posts", element: <AddBlog /> },
+          {  path: "posts", element: <><AddBlog /><AIChatWidget /></>  },
         ],
       },
       {
