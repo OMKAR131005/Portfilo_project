@@ -11,7 +11,6 @@ const formatDate = (iso) => {
     day: "numeric",
   });
 };
-const isHTML = (str) => /<[a-z][\s\S]*>/i.test(str);
 
 const BlogList = () => {
   const navigate = useNavigate();
@@ -41,33 +40,22 @@ const BlogList = () => {
 
   if (loading) {
     return (
-      <section
-        id="blogs"
-        className="py-24 px-[12vw] md:px-[7vw] lg:px-[16vw] font-sans text-center"
-      >
-        <div className="text-purple-400 text-xl animate-pulse">
-          Loading blogs...
-        </div>
+      <section id="blogs" className="py-24 px-[12vw] md:px-[7vw] lg:px-[16vw] font-sans text-center">
+        <div className="text-purple-400 text-xl animate-pulse">Loading blogs...</div>
       </section>
     );
   }
 
   if (error) {
     return (
-      <section
-        id="blogs"
-        className="py-24 px-[12vw] md:px-[7vw] lg:px-[16vw] font-sans text-center"
-      >
+      <section id="blogs" className="py-24 px-[12vw] md:px-[7vw] lg:px-[16vw] font-sans text-center">
         <p className="text-red-400">{error}</p>
       </section>
     );
   }
 
   return (
-    <section
-      id="blogs"
-      className="py-24 pb-24 px-[12vw] md:px-[7vw] lg:px-[16vw] font-sans"
-    >
+    <section id="blogs" className="py-24 pb-24 px-[12vw] md:px-[7vw] lg:px-[16vw] font-sans">
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-white">Blogs</h2>
         <div className="w-32 h-1 bg-purple-500 mx-auto mt-4"></div>
@@ -86,30 +74,16 @@ const BlogList = () => {
             {featuredBlog.title}
           </h3>
           <p className="text-white/70 text-sm mt-1 mb-1">
-            Author:{" "}
-            <span className="text-white font-medium">Omkar Gawande</span>
+            Author: <span className="text-white font-medium">Omkar Gawande</span>
           </p>
           <p className="text-white/70 text-sm mb-1">
-            Published:{" "}
-            <span className="text-white font-medium">
-              {formatDate(featuredBlog.publishedAt)}
-            </span>
+            Published: <span className="text-white font-medium">{formatDate(featuredBlog.publishedAt)}</span>
           </p>
           <p className="text-white/70 text-sm mb-4">
-            Category:{" "}
-            <span className="text-purple-400 font-medium">
-              {featuredBlog.category}
-            </span>
+            Category: <span className="text-purple-400 font-medium">{featuredBlog.category}</span>
           </p>
           <div data-color-mode="dark">
-            {isHTML(featuredBlog.content) ? (
-              <div dangerouslySetInnerHTML={{ __html: featuredBlog.content }} />
-            ) : (
-              <MDEditor.Markdown
-                source={featuredBlog.content || ""}
-                className="markdown-body"
-              />
-            )}
+            <MDEditor.Markdown source={featuredBlog.content || ""} className="markdown-body" />
           </div>
         </div>
       )}
@@ -128,12 +102,8 @@ const BlogList = () => {
               <span className="text-xs font-semibold uppercase tracking-widest text-purple-400 mb-2 block">
                 {blog.category}
               </span>
-              <h3 className="text-lg font-semibold text-gray-300 mb-2">
-                {blog.title}
-              </h3>
-              <p className="text-white/60 text-sm mb-2">
-                {formatDate(blog.publishedAt)}
-              </p>
+              <h3 className="text-lg font-semibold text-gray-300 mb-2">{blog.title}</h3>
+              <p className="text-white/60 text-sm mb-2">{formatDate(blog.publishedAt)}</p>
               <p className="text-gray-400 text-sm line-clamp-3">
                 {blog.content?.substring(0, 120)}...
               </p>
