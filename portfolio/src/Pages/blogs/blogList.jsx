@@ -24,11 +24,12 @@ const BlogList = () => {
 
      useEffect(() => {
 
-        fetch('http://localhost:8080/api/blog/getPublishBlogs')
+        fetch('http://localhost:8080/public/api/getPublishBlogs')
         .then(res => res.json())
         .then(data => setBlogs(data))
         .catch(err => console.log(err));
 
+        
     }, [])
 
 
@@ -36,7 +37,7 @@ useEffect(() => {
   const d = new Date();
   const date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
-  fetch(`http://localhost:8080/api/blog/date/${date}`)
+  fetch(`http://localhost:8080/public/api/date/${date}`)
     .then(res => res.json())
     .then(data => setTodayBlogs(data[data.length - 1]))
     .catch(err => console.error(err)); 

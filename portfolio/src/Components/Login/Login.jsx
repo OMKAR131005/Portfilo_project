@@ -11,7 +11,29 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    navigate('/admin')
+      fetch("http://localhost:8080/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        console.log("Response status:", response.headers.get('Authorization'));
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        localStorage.setItem('authToken', response.headers.get('Authorization'));
+        return response;
+      }
+      )
+      .then((data) => {
+        console.log("Login successful:", data);
+        navigate('/admin')
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      }
+      );
+    
     console.log("Login Data:", data);
   };
 
@@ -45,11 +67,11 @@ const Login = () => {
             focus:shadow-[0_0_20px_rgba(168,85,247,0.45)]
             transition-all duration-300
 "
-          type="email"
-          placeholder="Email"
-          {...register("email", { required: "Email required" })}
+          type="username"
+          placeholder="Username"
+          {...register("username", { required: "Username required" })}
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.username && <p>{errors.username.message}</p>}
 
         <input
           className="border w-full p-6 rounded-lg bg-transparent

@@ -55,7 +55,7 @@ const handlePrimaryAction = async () => {
         alert("Title, Category and Content are required");
         return;
       }
-      response = await fetch("http://localhost:8080/api/blog/create", {
+      response = await fetch("http://localhost:8080/api/admin/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(blogData),
@@ -69,7 +69,7 @@ const handlePrimaryAction = async () => {
   }
 
       response = await fetch(
-        `http://localhost:8080/api/blog/updateBlog/${selectedBlog.id}`,
+        `http://localhost:8080/api/admin/updateBlog/${selectedBlog.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -82,7 +82,7 @@ const handlePrimaryAction = async () => {
       console.log("Deleting blog with ID:", selectedBlog.id);
       
       response = await fetch(
-        `http://localhost:8080/api/blog/publish/${selectedBlog.id}`,
+        `http://localhost:8080/api/admin/publish/${selectedBlog.id}`,
         {
           method: "GET",
         }
@@ -93,7 +93,7 @@ const handlePrimaryAction = async () => {
       console.log("Deleting blog with ID:", selectedBlog.id);
       
       response = await fetch(
-        `http://localhost:8080/api/blog/delete/${selectedBlog.id}`,
+        `http://localhost:8080/api/admin/delete/${selectedBlog.id}`,
         {
           method: "DELETE",
         }
@@ -115,13 +115,13 @@ const handlePrimaryAction = async () => {
 
 
   // const categories = ["Backend", "Frontend", "React", "DSA", "System Design"];
-  const categories = ["TECH", "BACKEND", "FRONTEND", "DSA", "SYSTEM_DESIGN"];
+  const categories = ["TECH", "BACKEND", "FRONTEND", "DSA", "SYSTEM_DESIGN","DSP"];
 
 
   // const formattedDate = `${String(d.getDate()).padStart(2, '0')}-${String(d.getMonth() + 1).padStart(2, '0')}-${d.getFullYear()}`;
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/blog/getAllBlog")
+    fetch("http://localhost:8080/api/admin/getAllBlog")
       .then((res) => res.json())
       .then((data) => setBlogs(data))
       .catch((err) => console.log(err));
